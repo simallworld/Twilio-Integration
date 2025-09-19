@@ -49,5 +49,25 @@ const makeCall = async () => {
   console.log(call);
 };
 
+//Send Paused Phone call to the client
+const makePausedCall = async () => {
+  const call = await client.calls.create({
+    //By using Text to speach paused call
+    twiml: `
+        <Response>
+            <Say voice="man">Hi! This is Shivam Swaroop speaking...</Say>
+            <Pause length="2"/>
+            <Say>Thankyou for waiting</Say>
+        </Response>
+        `,
+
+    from: "+19032012124",
+    to: process.env.TWILIO_PHONE_NUMBER,
+  });
+
+  console.log(call);
+};
+
 // sendMessage();
-makeCall();
+// makeCall();
+makePausedCall();
